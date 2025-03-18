@@ -109,3 +109,25 @@ Is a set of rules that allows different software apps to communicate with each o
 
 ### JSON (JavaScript object notation)
 This is an interchangeable data format that can be used across any application and device 
+
+### AUTHENTICATION AND AUTHORIZATION
+Authentication : IDENTITY MANAGEMENT :: WHO IS USING THE APP 
+Authorization : USER PRIVILEDGES :: WHAT USER CAN DO ONCE AUTHENTICATED
+
+
+### STEPS IN CREATING AUTHENTICATION MODEL 
+1. Within settings.py of the project settings modify the authentication settings
+   - LOGIN_URL :: ## redirect unauthenticated users back to the login screen 
+   - LOGIN_REDIRECT_URL :: After login what page will they see 
+   - LOGOUT_REDIRECT_URL :: After logout redirect user back to the login screen
+2. Create views for the register ,login and logout processes 
+3. Create the rendered/ redirected templates 
+4. Register the urls to map the authentication functions in urls 
+5. Do migrations: python manage.py migrate 
+
+
+
+
+
+
+
