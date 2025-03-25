@@ -1,4 +1,15 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.contrib.auth import get_user_model
+# create a custom user model
+class CustomUser(AbstractUser):
+    phone_number = models.CharField(max_length=15, unique=True, blank=True,
+                                    null=True)
+    profile_picture = models.ImageField(upload_to='profile_pictures/',
+                                        blank=True, null=True)
+
+    def __str__(self):
+        return self.username
 
 # Create your models here.
 
@@ -17,7 +28,8 @@ class Task(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     #here establishing a one to many relationship using a foreidn key
     tasker = models.ForeignKey(Taskers, on_delete=models.SET_NULL,null=True,blank=True)
-
+    #this tags the user who creates the task
+    user = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL,null=True,blank=True)
 
     def __str__(self):
         return self.title

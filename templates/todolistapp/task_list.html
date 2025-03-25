@@ -4,7 +4,11 @@
 
     {# create the form to register taskers  #}
 
-
+    {# create the form register taskers #}
+    {# greet our logged in user#}
+    {# in jinja templating we have access to the {{ user }}object }}  #}
+    <h4>Welcome to todolistapp {{ user.username }}</h4>
+    <img style="align-content: center" src="{{ user.profile_picture.url }}" alt="" width="200" height="200">
 <div id="form1">
     <form action="{% url 'add_tasker' %}" method="post">
         <h5 id="add1"> Add a Tasker </h5>
@@ -45,25 +49,27 @@
 
     </form>
     </div>
+    <br> <br>
+
     <div class="dec">
 <h4>My Tasks</h4>
     <ul>
         {% for task in tasks %}
             <li>
                 {{ task.task }} - completed {{ task.completed }}
-            <div class="span1">
-                <span id="=spann1">Assigned to {{ task.tasker.username }}
-                </span>
-            </div>
-            <span id="span2">
+            <div class="span">
+                <span >Assigned to {{ task.tasker.username }}</span>
+            <span>
                  Email to {{ task.tasker.email }}
             </span>
+            </div>
                 {% if task.completed %}
                     completed
             {% else %}
             <a class="border border-success-subtle" href="{% url 'mark_complete' task.id %}">Mark as Done </a>
             {% endif %}
             <a class="border border-danger-subtle" href="{% url 'delete_task' task.id %}">Delete This Task</a>
+
             </li>
 {#  show this on tasks #}
             {% empty %}
@@ -71,5 +77,5 @@
         {% endfor %}
     </ul>
     </div>
-
+    <a class="logout-button" href="{% url 'logout' %}">Logout</a>
 {% endblock%}
